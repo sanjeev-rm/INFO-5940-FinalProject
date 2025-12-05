@@ -1,0 +1,6 @@
+openai
+openai-agents
+streamlit
+python-dotenv
+tavily
+pyyaml
