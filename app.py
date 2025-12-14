@@ -1,185 +1,205 @@
-# app.py
 """
-FrontDesk Coach v0
+Hotel Guest Service Training System
+Main Streamlit Application
 
-Single-turn coaching:
-- You describe the situation.
-- You paste your draft reply to the guest.
-- The AI 'manager' reviews it and suggests better language.
+This application provides a real-time chat interface for training hotel front desk staff
+using AI agents that simulate guest interactions and provide coaching feedback.
 """
-
-from __future__ import annotations
-
-import os
-import asyncio
-from typing import Any
 
 import streamlit as st
-from dotenv import load_dotenv
-import yaml
+import asyncio
+from datetime import datetime
+import json
 
-from agents import Agent, Runner  # from your course framework
+# Import our custom modules
+from agents.guest_agent import GuestAgent
+from agents.coach_agent import CoachAgent
+from agents.report_agent import ReportAgent
+from rag_system.retriever import RAGRetriever
+from config.settings import AppConfig
+from utils.session_manager import SessionManager
+from utils.logger import setup_logger
 
-# ─────────────────────────────────────────────────────────
-# Environment
-# ─────────────────────────────────────────────────────────
+# Set up logging
+logger = setup_logger(__name__)
 
-def get_openai_api_key() -> str:
-    """
-    1. Load .env (local dev / evaluators). This won't override real env vars.
-    2. Read OPENAI_API_KEY from environment (works for Codespaces secrets or .env).
-    3. If missing, raise a clear error.
-    """
-    # Load .env if present (no-op if not)
-    load_dotenv()
-
-    api_key = os.getenv("OPENAI_API_KEY")
-
-    if not api_key:
-        raise RuntimeError(
-            "OPENAI_API_KEY is not set.\n"
-            "Set it as a Codespaces secret OR create a .env file with:\n"
-            "OPENAI_API_KEY=your_key_here"
-        )
-
-    # Ensure downstream libs see it
-    os.environ["OPENAI_API_KEY"] = api_key
-    return api_key
-
-
-OPENAI_API_KEY = get_openai_api_key()
-
-# The agents / OpenAI SDK will read OPENAI_API_KEY from the env,
-# but setting it explicitly doesn’t hurt:
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-
-# ─────────────────────────────────────────────────────────
-# Helpers
-# ─────────────────────────────────────────────────────────
-
-def load_hotel_profile(path: str = "data/statler_profile.yaml") -> dict:
-    with open(path, "r") as f:
-        return yaml.safe_load(f)
-
-
-HOTEL_PROFILE = load_hotel_profile()
-
-
-def extract_text(result_obj: Any) -> str:
-    """
-    Pull a usable string from the Runner result in a tolerant way.
-    Same pattern as in assign_2.py.
-    """
-    return (
-        getattr(result_obj, "final_output", None)
-        or getattr(result_obj, "text", None)
-        or str(result_obj)
-    )
-
-
-# ─────────────────────────────────────────────────────────
-# Coach Agent
-# ─────────────────────────────────────────────────────────
-
-COACH_INSTRUCTIONS = """
-You are a seasoned front-office manager at a high-end hotel.
-
-You coach new front-desk associates on their written replies to guests.
-You always:
-- Respect the hotel's tone guidelines.
-- Respect the hotel's policies as given in context.
-- Focus on language and explanation, not changing the underlying decision.
-
-Your tasks:
-1. Briefly score the reply on:
-   - Policy adherence (1–5)
-   - Tone / empathy (1–5)
-   - Clarity / usefulness (1–5)
-2. Point out 1–3 concrete things they did well.
-3. Point out 1–3 concrete things to improve.
-4. Rewrite their reply so it:
-   - Keeps the same decision (e.g., waive fee or not),
-   - Uses warmer, clearer language aligned with the tone guidelines.
-
-Answer in markdown with three sections:
-- **Quick scores**
-- **Feedback**
-- **Suggested rewrite**
-"""
-
-coach_agent = Agent(
-    name="Coach Agent",
-    model="openai.gpt-4o",   # or whatever model your group key supports
-    instructions=COACH_INSTRUCTIONS.strip(),
+# Configure Streamlit page
+st.set_page_config(
+    page_title="Hotel Guest Service Training",
+    page_icon="🏨",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
+def initialize_session_state():
+    """Initialize session state variables"""
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = SessionManager.generate_session_id()
+    if "training_active" not in st.session_state:
+        st.session_state.training_active = False
+    if "agents_initialized" not in st.session_state:
+        st.session_state.agents_initialized = False
 
-def build_context() -> str:
-    tone = "\n".join(HOTEL_PROFILE.get("tone_guidelines", []))
+def initialize_agents():
+    """Initialize AI agents"""
+    if not st.session_state.agents_initialized:
+        try:
+            config = AppConfig()
 
-    policies_txt = []
-    for name, cfg in HOTEL_PROFILE.get("policies", {}).items():
-        policies_txt.append(f"Policy: {name}")
-        summary = cfg.get("summary")
-        if summary:
-            policies_txt.append(f"  Summary: {summary}")
-    policies_block = "\n".join(policies_txt)
+            # Initialize RAG system
+            rag_retriever = RAGRetriever(config)
 
-    good_phrases = "\n".join(HOTEL_PROFILE.get("good_phrases", []))
-    bad_phrases = "\n".join(HOTEL_PROFILE.get("phrases_to_avoid", []))
+            # Initialize agents
+            st.session_state.guest_agent = GuestAgent(config)
+            st.session_state.coach_agent = CoachAgent(config, rag_retriever)
+            st.session_state.report_agent = ReportAgent(config, rag_retriever)
 
-    return f"""
-Tone guidelines:
-{tone}
+            st.session_state.agents_initialized = True
+            logger.info("Agents initialized successfully")
 
-Key policies:
-{policies_block}
+        except Exception as e:
+            st.error(f"Failed to initialize agents: {str(e)}")
+            logger.error(f"Agent initialization error: {e}")
+            return False
 
-Phrases to avoid:
-{bad_phrases}
+    return True
 
-Preferred phrases:
-{good_phrases}
-""".strip()
+def main():
+    """Main application function"""
 
+    # Initialize session state
+    initialize_session_state()
 
-def run_coach(situation: str, trainee_reply: str) -> str:
-    context = build_context()
+    # Sidebar for configuration and coaching
+    with st.sidebar:
+        st.title("🏨 Training Control Panel")
 
-    user_msg = f"""
-Situation:
-{ situation }
+        # Session information
+        st.subheader("Session Info")
+        st.write(f"Session ID: {st.session_state.session_id[:8]}...")
+        st.write(f"Status: {'Active' if st.session_state.training_active else 'Inactive'}")
 
-Hotel context:
-{ context }
+        # Training controls
+        st.subheader("Training Controls")
 
-Associate's draft reply:
-\"\"\"{ trainee_reply }\"\"\"
-"""
+        if not st.session_state.training_active:
+            if st.button("Start Training Session", type="primary"):
+                if initialize_agents():
+                    st.session_state.training_active = True
+                    st.session_state.messages = []
 
-    result = asyncio.run(Runner.run(coach_agent, user_msg))
-    return extract_text(result)
+                    # Generate initial guest scenario
+                    initial_scenario = st.session_state.guest_agent.generate_scenario()
+                    st.session_state.messages.append({
+                        "role": "guest",
+                        "content": initial_scenario,
+                        "timestamp": datetime.now()
+                    })
+                    st.rerun()
+        else:
+            if st.button("End Training Session", type="secondary"):
+                st.session_state.training_active = False
 
+                # Generate session report
+                if len(st.session_state.messages) > 1:
+                    with st.spinner("Generating session report..."):
+                        report = st.session_state.report_agent.generate_report(
+                            st.session_state.messages,
+                            st.session_state.session_id
+                        )
+                        st.session_state.final_report = report
+                st.rerun()
 
-# ─────────────────────────────────────────────────────────
-# Streamlit UI
-# ─────────────────────────────────────────────────────────
+        # Real-time coaching panel (only visible during active training)
+        if st.session_state.training_active and st.session_state.agents_initialized:
+            st.subheader("💡 Real-time Coaching")
+            coaching_placeholder = st.empty()
 
-st.set_page_config(page_title="FrontDesk Coach", page_icon="🛎️")
-st.title("🛎️ FrontDesk Coach (v0)")
-st.caption("Practice your front-desk replies and get AI manager coaching.")
+            # Display latest coaching if available
+            if hasattr(st.session_state, 'latest_coaching'):
+                with coaching_placeholder.container():
+                    st.info("Coach Feedback:")
+                    st.write(st.session_state.latest_coaching)
 
-default_situation = "Guest is upset about being charged a no-show fee after claiming they cancelled."
-situation = st.text_input("Scenario / situation:", value=default_situation)
+    # Main chat interface
+    st.title("🏨 Hotel Guest Service Training")
+    st.markdown("Practice your guest service skills with our AI-powered training system.")
 
-trainee_reply = st.text_area("Your draft reply to the guest:", height=200)
+    # Display final report if session ended
+    if not st.session_state.training_active and hasattr(st.session_state, 'final_report'):
+        st.subheader("📊 Training Session Report")
+        st.markdown(st.session_state.final_report)
 
-if st.button("Get coaching", type="primary"):
-    if not trainee_reply.strip():
-        st.warning("Type a reply first.")
+        if st.button("Start New Session"):
+            del st.session_state.final_report
+            st.session_state.session_id = SessionManager.generate_session_id()
+            st.rerun()
+
+    # Chat interface
+    elif st.session_state.training_active:
+
+        # Display chat messages
+        for message in st.session_state.messages:
+            role_emoji = "😟" if message["role"] == "guest" else "👨‍💼"
+            role_name = "Hotel Guest" if message["role"] == "guest" else "Front Desk Agent"
+
+            with st.chat_message(message["role"], avatar=role_emoji):
+                st.write(f"**{role_name}:** {message['content']}")
+
+        # Chat input for trainee responses
+        if prompt := st.chat_input("Type your response as the front desk agent..."):
+
+            # Add trainee message
+            st.session_state.messages.append({
+                "role": "agent",
+                "content": prompt,
+                "timestamp": datetime.now()
+            })
+
+            # Display trainee message immediately
+            with st.chat_message("agent", avatar="👨‍💼"):
+                st.write(f"**Front Desk Agent:** {prompt}")
+
+            # Get coaching feedback (in sidebar)
+            with st.spinner("Getting coaching feedback..."):
+                coaching_feedback = st.session_state.coach_agent.provide_coaching(
+                    st.session_state.messages,
+                    prompt
+                )
+                st.session_state.latest_coaching = coaching_feedback
+
+            # Generate guest response
+            with st.spinner("Guest is responding..."):
+                guest_response = st.session_state.guest_agent.respond_to_agent(
+                    st.session_state.messages,
+                    prompt
+                )
+
+                # Add guest response
+                st.session_state.messages.append({
+                    "role": "guest",
+                    "content": guest_response,
+                    "timestamp": datetime.now()
+                })
+
+            st.rerun()
+
     else:
-        with st.spinner("Asking your (very patient) manager for feedback..."):
-            feedback = run_coach(situation, trainee_reply)
+        st.info("Click 'Start Training Session' in the sidebar to begin your training.")
+        st.markdown("""
+        ### How it works:
+        1. **Start a training session** - The system will generate a guest scenario
+        2. **Respond as a front desk agent** - Practice your customer service skills
+        3. **Get real-time coaching** - Receive feedback based on training materials
+        4. **Review your session** - Get a detailed report at the end
 
-        st.markdown("### Coach Feedback")
-        st.markdown(feedback)
+        The system uses three AI agents:
+        - 🎭 **Guest Agent**: Simulates upset hotel guests with realistic scenarios
+        - 💡 **Coach Agent**: Provides real-time feedback based on training materials
+        - 📊 **Report Agent**: Generates comprehensive session summaries
+        """)
+
+if __name__ == "__main__":
+    main()

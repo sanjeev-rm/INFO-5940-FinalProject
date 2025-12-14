@@ -1,6 +1,12 @@
-openai
-openai-agents
+# Hotel Guest Service Training System - Dependencies
 streamlit
+requests
+openai
+chromadb
+numpy
+PyPDF2
+python-docx
+pandas
+openpyxl
+pdfplumber
 python-dotenv
-tavily
-pyyaml
