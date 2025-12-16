@@ -12,6 +12,99 @@ This system uses three specialized AI agents to create an immersive training env
 
 The system processes your existing training documents (PDF, Word, Excel, Text files) and uses them as the knowledge base for coaching and feedback, ensuring consistency with your established training standards.
 
+## System Architecture
+
+The following diagram illustrates the agent-to-agent data flow and system architecture:
+
+```mermaid
+flowchart TD
+    %% --- STYLING DEFINITIONS (Professional Palette) ---
+    %% Agents = Teal (Modern Tech)
+    classDef agent fill:#008080,stroke:#333,stroke-width:2px,color:white;
+    %% Human = Slate Grey (Neutral/Professional)
+    classDef human fill:#506275,stroke:#333,stroke-width:2px,color:white;
+    %% Data/Knowledge = Gold (Value/Asset)
+    classDef knowledge fill:#FFD700,stroke:#333,stroke-width:1px,color:black;
+    %% Output/Success = Green (Result)
+    classDef result fill:#2E8B57,stroke:#333,stroke-width:2px,color:white;
+    %% System Steps = White/Simple
+    classDef system fill:#fff,stroke:#333,stroke-width:1px;
+    %% Invisible spacers for better layout
+    classDef invisible fill:transparent,stroke:transparent;
+
+    %% --- TOP LEVEL DATA ASSET ---
+    YAML[("📚 YAML Training\n\nManual")]:::knowledge
+
+    %% Invisible spacer for vertical separation
+    spacer1[ ]:::invisible
+    YAML --- spacer1
+
+    %% --- PHASE 1: SETUP ---
+    subgraph P1 ["🚀 PHASE 1: SYSTEM SETUP"]
+        direction TB
+        Start([User Clicks\n\nStart Training]):::human
+        Load[Load Training\n\nContext]:::system
+        Start --> Load
+    end
+
+    %% --- PHASE 2: INTERACTIVE LOOP ---
+    subgraph P2 ["💬 PHASE 2: STREAMLIT ENVIRONMENT"]
+        direction TB
+
+        %% Nested subgraph for better organization
+        subgraph Agents ["Interactive Training Agents"]
+            Guest("😟 Guest Agent\n\n(Simulates Customer Scenarios)"):::agent
+            Trainee("👨‍🎓 Human Trainee\n\n(Front Desk Staff)"):::human
+            Coach("💡 Coach Agent\n\n(Real-time Feedback)"):::agent
+        end
+
+        %% The Conversation Flow with better spacing
+        Guest <-->|Roleplay\nConversation| Trainee
+        Trainee -->|Response for\nEvaluation| Coach
+        Coach -.->|Live Coaching\nFeedback| Trainee
+    end
+
+    %% --- PHASE 3: REPORTING ---
+    subgraph P3 ["📊 PHASE 3: ANALYSIS & REPORTING"]
+        direction TB
+        End([User Ends\n\nSession]):::human
+        History[("📝 Complete Conversation\n\nHistory")]:::knowledge
+        ReportAg("📊 Report Agent\n\n(Performance Analyzer)"):::agent
+        FinalDoc[/"✅ Comprehensive\nPerformance Report"/]:::result
+
+        %% Internal phase flow
+        End --> History
+        History --> ReportAg
+        ReportAg --> FinalDoc
+    end
+
+    %% --- MAIN SYSTEM FLOW ---
+    spacer1 --> P1
+    P1 --> P2
+    P2 --> P3
+
+    %% --- KNOWLEDGE INTEGRATION LINES ---
+    YAML -.->|Training Policies &\nBest Practice Guidelines| Coach
+    YAML -.->|Evaluation Standards &\nPerformance Metrics| ReportAg
+```
+
+### Architecture Overview
+
+**Phase 1 - System Setup**: The training session begins when a user starts the system. The YAML training manual is loaded into memory and made available to the coaching and reporting agents.
+
+**Phase 2 - Interactive Loop**: This is the core training environment where:
+- The **Guest Agent** creates realistic customer service scenarios
+- The **Human Trainee** practices responses in real-time
+- The **Coach Agent** provides immediate feedback based on training standards
+- All interactions occur within the Streamlit web interface for seamless user experience
+
+**Phase 3 - Analysis & Reporting**: After the session ends:
+- The complete conversation history is analyzed
+- The **Report Agent** evaluates performance against training criteria
+- A comprehensive report is generated for review and improvement planning
+
+**Knowledge Integration**: The YAML training manual serves as the single source of truth, ensuring all AI agents provide feedback and evaluation based on consistent organizational standards.
+
 ## Features
 
 ### Core Functionality
