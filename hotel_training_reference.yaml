@@ -1,397 +1,397 @@
 hotel_training_reference:
-  hotel_info:
-    name: "Statler Hotel at Cornell University"
-    type: "Hotel & Conference Center"
-    classification: "Upscale Academic Hotel"
-    location: "Ithaca, NY"
+  hotel_info:
+    name: "Statler Hotel at Cornell University"
+    type: "Hotel & Conference Center"
+    classification: "Upscale Academic Hotel"
+    location: "Ithaca, NY"
 
-  mission_vision_values:
-    mission: "To provide exceptional hospitality experiences while serving as a living laboratory for students in the Cornell School of Hotel Administration"
-    vision: "To be the premier university hotel setting the standard for hospitality education and guest experience"
-    values:
-      - "Excellence in service"
-      - "Educational mission"
-      - "Professional development"
-      - "Guest satisfaction"
-      - "Continuous learning"
+  mission_vision_values:
+    mission: "To provide exceptional hospitality experiences while serving as a living laboratory for students in the Cornell School of Hotel Administration"
+    vision: "To be the premier university hotel setting the standard for hospitality education and guest experience"
+    values:
+      - "Excellence in service"
+      - "Educational mission"
+      - "Professional development"
+      - "Guest satisfaction"
+      - "Continuous learning"
 
-  service_essentials:
-    core_principles:
-      - "Anticipate guest needs"
-      - "Provide personalized service"
-      - "Maintain professional appearance"
-      - "Demonstrate product knowledge"
-      - "Show genuine care and concern"
-      - "Create memorable experiences"
+  service_essentials:
+    core_principles:
+      - "Anticipate guest needs"
+      - "Provide personalized service"
+      - "Maintain professional appearance"
+      - "Demonstrate product knowledge"
+      - "Show genuine care and concern"
+      - "Create memorable experiences"
 
-    guest_interaction_guidelines:
-      - "Make eye contact and smile"
-      - "Use guest names when possible"
-      - "Listen actively to guest requests"
-      - "Follow up on guest needs"
-      - "Exceed expectations when possible"
+    guest_interaction_guidelines:
+      - "Make eye contact and smile"
+      - "Use guest names when possible"
+      - "Listen actively to guest requests"
+      - "Follow up on guest needs"
+      - "Exceed expectations when possible"
 
-    professional_standards:
-      - "Arrive on time and prepared"
-      - "Maintain neat, professional appearance"
-      - "Communicate clearly and professionally"
-      - "Take ownership of guest issues"
-      - "Collaborate effectively with team members"
+    professional_standards:
+      - "Arrive on time and prepared"
+      - "Maintain neat, professional appearance"
+      - "Communicate clearly and professionally"
+      - "Take ownership of guest issues"
+      - "Collaborate effectively with team members"
 
-  systems_training:
-    infor_hms:
-      description: "Primary hotel management system"
-      key_functions:
-        - "Guest reservations management"
-        - "Room assignments"
-        - "Check-in/check-out processing"
-        - "Billing and payment processing"
-        - "Guest profile management"
-        - "Reporting and analytics"
+  systems_training:
+    infor_hms:
+      description: "Primary hotel management system"
+      key_functions:
+        - "Guest reservations management"
+        - "Room assignments"
+        - "Check-in/check-out processing"
+        - "Billing and payment processing"
+        - "Guest profile management"
+        - "Reporting and analytics"
 
-    ovalet:
-      description: "Digital services and guest communication platform"
-      features:
-        - "Digital check-in/check-out"
-        - "Mobile room keys"
-        - "Guest messaging"
-        - "Service requests"
-        - "Local area information"
+    ovalet:
+      description: "Digital services and guest communication platform"
+      features:
+        - "Digital check-in/check-out"
+        - "Mobile room keys"
+        - "Guest messaging"
+        - "Service requests"
+        - "Local area information"
 
-    shuttleq:
-      description: "Transportation scheduling system"
-      purpose: "Coordinate airport and local shuttle services for guests"
+    shuttleq:
+      description: "Transportation scheduling system"
+      purpose: "Coordinate airport and local shuttle services for guests"
 
-    other_systems:
-      - "PCI DSS compliance systems for payment processing"
-      - "Phone system for guest communications"
-      - "Housekeeping management system"
+    other_systems:
+      - "PCI DSS compliance systems for payment processing"
+      - "Phone system for guest communications"
+      - "Housekeeping management system"
 
-  room_types_and_codes:
-    standard_rooms:
-      STD: "Standard Queen Room"
-      STDK: "Standard King Room"
-      SUP: "Superior Room"
+  room_types_and_codes:
+    standard_rooms:
+      STD: "Standard Queen Room"
+      STDK: "Standard King Room"
+      SUP: "Superior Room"
 
-    suites:
-      JRS: "Junior Suite"
-      EXS: "Executive Suite"
-      PRS: "Presidential Suite"
+    suites:
+      JRS: "Junior Suite"
+      EXS: "Executive Suite"
+      PRS: "Presidential Suite"
 
-    specialty_rooms:
-      ADA: "ADA Accessible Rooms"
-      CON: "Connecting Rooms"
-      ADJ: "Adjacent Rooms"
+    specialty_rooms:
+      ADA: "ADA Accessible Rooms"
+      CON: "Connecting Rooms"
+      ADJ: "Adjacent Rooms"
 
-    room_features:
-      - "High-speed internet access"
-      - "Flat-screen television"
-      - "Work desk and ergonomic chair"
-      - "In-room coffee and tea service"
-      - "Premium bedding and linens"
-      - "Climate control"
-      - "In-room safe"
+    room_features:
+      - "High-speed internet access"
+      - "Flat-screen television"
+      - "Work desk and ergonomic chair"
+      - "In-room coffee and tea service"
+      - "Premium bedding and linens"
+      - "Climate control"
+      - "In-room safe"
 
-  packages_and_offers:
-    romance_package:
-      name: "Romance Package"
-      inclusions:
-        - "Champagne and chocolate-covered strawberries"
-        - "Late checkout (subject to availability)"
-        - "Rose petals and special room setup"
-      price_addon: "Market rate + package fee"
+  packages_and_offers:
+    romance_package:
+      name: "Romance Package"
+      inclusions:
+        - "Champagne and chocolate-covered strawberries"
+        - "Late checkout (subject to availability)"
+        - "Rose petals and special room setup"
+      price_addon: "Market rate + package fee"
 
-    cornell_packages:
-      graduation_package:
-        name: "Graduation Celebration Package"
-        target: "Families celebrating graduation"
-        inclusions:
-          - "Welcome amenity"
-          - "Flexible cancellation"
-          - "Priority room assignment"
+    cornell_packages:
+      graduation_package:
+        name: "Graduation Celebration Package"
+        target: "Families celebrating graduation"
+        inclusions:
+          - "Welcome amenity"
+          - "Flexible cancellation"
+          - "Priority room assignment"
 
-      parent_weekend_package:
-        name: "Parent Weekend Package"
-        inclusions:
-          - "Welcome reception access"
-          - "Campus tour information"
-          - "Dining recommendations"
+      parent_weekend_package:
+        name: "Parent Weekend Package"
+        inclusions:
+          - "Welcome reception access"
+          - "Campus tour information"
+          - "Dining recommendations"
 
-    business_packages:
-      corporate_rate:
-        name: "Corporate Rate"
-        eligibility: "Business travelers with qualifying company"
-        benefits:
-          - "Discounted room rate"
-          - "Flexible booking terms"
-          - "Priority reservations"
+    business_packages:
+      corporate_rate:
+        name: "Corporate Rate"
+        eligibility: "Business travelers with qualifying company"
+        benefits:
+          - "Discounted room rate"
+          - "Flexible booking terms"
+          - "Priority reservations"
 
-  reservation_types:
-    standard:
-      description: "Direct hotel reservations"
-      booking_channels:
-        - "Hotel website"
-        - "Phone reservations"
-        - "Walk-in guests"
+  reservation_types:
+    standard:
+      description: "Direct hotel reservations"
+      booking_channels:
+        - "Hotel website"
+        - "Phone reservations"
+        - "Walk-in guests"
 
-    third_party:
-      expedia:
-        description: "Expedia group bookings"
-        special_handling: "Commission-based, specific cancellation policies"
+    third_party:
+      expedia:
+        description: "Expedia group bookings"
+        special_handling: "Commission-based, specific cancellation policies"
 
-      booking_com:
-        description: "Booking.com reservations"
-        payment_model: "Prepaid or pay-at-hotel options"
+      booking_com:
+        description: "Booking.com reservations"
+        payment_model: "Prepaid or pay-at-hotel options"
 
-      cubus:
-        description: "Cornell University booking system"
-        purpose: "University-related stays and events"
+      cubus:
+        description: "Cornell University booking system"
+        purpose: "University-related stays and events"
 
-    group_reservations:
-      minimum: "10+ rooms"
-      features:
-        - "Group rates and contracts"
-        - "Rooming lists"
-        - "Special billing arrangements"
-        - "Dedicated group coordinator"
+    group_reservations:
+      minimum: "10+ rooms"
+      features:
+        - "Group rates and contracts"
+        - "Rooming lists"
+        - "Special billing arrangements"
+        - "Dedicated group coordinator"
 
-  check_in_procedures:
-    standard_process:
-      steps:
-        1: "Greet guest warmly and verify identification"
-        2: "Locate reservation in system"
-        3: "Confirm guest information and length of stay"
-        4: "Process payment authorization"
-        5: "Assign room and create key cards"
-        6: "Explain hotel amenities and policies"
-        7: "Provide directions to room and elevators"
+  check_in_procedures:
+    standard_process:
+      steps:
+        1: "Greet guest warmly and verify identification"
+        2: "Locate reservation in system"
+        3: "Confirm guest information and length of stay"
+        4: "Process payment authorization"
+        5: "Assign room and create key cards"
+        6: "Explain hotel amenities and policies"
+        7: "Provide directions to room and elevators"
 
-    required_documents:
-      - "Government-issued photo ID"
-      - "Credit card for incidentals"
+    required_documents:
+      - "Government-issued photo ID"
+      - "Credit card for incidentals"
 
-    security_procedures:
-      - "Verify ID matches reservation name"
-      - "Collect credit card authorization"
-      - "Follow PCI DSS compliance protocols"
-      - "Maintain guest privacy and confidentiality"
+    security_procedures:
+      - "Verify ID matches reservation name"
+      - "Collect credit card authorization"
+      - "Follow PCI DSS compliance protocols"
+      - "Maintain guest privacy and confidentiality"
 
-  check_out_procedures:
-    standard_process:
-      steps:
-        1: "Review final bill with guest"
-        2: "Process payment for any additional charges"
-        3: "Collect room keys"
-        4: "Ask about guest experience"
-        5: "Provide receipt and departure information"
-        6: "Thank guest and invite return visit"
+  check_out_procedures:
+    standard_process:
+      steps:
+        1: "Review final bill with guest"
+        2: "Process payment for any additional charges"
+        3: "Collect room keys"
+        4: "Ask about guest experience"
+        5: "Provide receipt and departure information"
+        6: "Thank guest and invite return visit"
 
-    express_checkout:
-      description: "Available for guests with credit card on file"
-      process: "Bill automatically processed, receipt emailed"
+    express_checkout:
+      description: "Available for guests with credit card on file"
+      process: "Bill automatically processed, receipt emailed"
 
-    late_checkout:
-      availability: "Subject to hotel occupancy"
-      standard_time: "12:00 PM"
-      late_options: "Until 2:00 PM or 4:00 PM (fees may apply)"
+    late_checkout:
+      availability: "Subject to hotel occupancy"
+      standard_time: "12:00 PM"
+      late_options: "Until 2:00 PM or 4:00 PM (fees may apply)"
 
-  phone_protocols:
-    answering_standards:
-      greeting: "Thank you for calling The Statler Hotel, this is [Name], how may I assist you?"
-      timing: "Answer within 3 rings when possible"
-      hold_procedures: "Ask permission before placing on hold, check back every 30-60 seconds"
+  phone_protocols:
+    answering_standards:
+      greeting: "Thank you for calling The Statler Hotel, this is [Name], how may I assist you?"
+      timing: "Answer within 3 rings when possible"
+      hold_procedures: "Ask permission before placing on hold, check back every 30-60 seconds"
 
-    call_types:
-      reservations:
-        - "Check availability and rates"
-        - "Create new reservations"
-        - "Modify existing bookings"
-        - "Answer questions about amenities"
+    call_types:
+      reservations:
+        - "Check availability and rates"
+        - "Create new reservations"
+        - "Modify existing bookings"
+        - "Answer questions about amenities"
 
-      guest_services:
-        - "Room service requests"
-        - "Housekeeping needs"
-        - "Concierge assistance"
-        - "Technical support"
+      guest_services:
+        - "Room service requests"
+        - "Housekeeping needs"
+        - "Concierge assistance"
+        - "Technical support"
 
-      transfers:
-        departments:
-          - "Reservations: Extension 5555"
-          - "Housekeeping: Extension 5560"
-          - "Engineering: Extension 5570"
-          - "Food & Beverage: Extension 5580"
+      transfers:
+        departments:
+          - "Reservations: Extension 5555"
+          - "Housekeeping: Extension 5560"
+          - "Engineering: Extension 5570"
+          - "Food & Beverage: Extension 5580"
 
-  guest_service_standards:
-    response_times:
-      phone_calls: "Within 3 rings"
-      guest_requests: "Acknowledge within 5 minutes"
-      complaint_resolution: "Address immediately, follow up within 24 hours"
+  guest_service_standards:
+    response_times:
+      phone_calls: "Within 3 rings"
+      guest_requests: "Acknowledge within 5 minutes"
+      complaint_resolution: "Address immediately, follow up within 24 hours"
 
-    service_recovery:
-      steps:
-        1: "Listen actively and empathize"
-        2: "Apologize sincerely for the inconvenience"
-        3: "Take ownership and responsibility"
-        4: "Provide immediate solution or alternative"
-        5: "Follow up to ensure satisfaction"
-        6: "Document incident for future prevention"
+    service_recovery:
+      steps:
+        1: "Listen actively and empathize"
+        2: "Apologize sincerely for the inconvenience"
+        3: "Take ownership and responsibility"
+        4: "Provide immediate solution or alternative"
+        5: "Follow up to ensure satisfaction"
+        6: "Document incident for future prevention"
 
-  forbes_travel_guide_standards:
-    hotel_standards:
-      reservations:
-        - "Professional and knowledgeable phone manner"
-        - "Accurate information about rates and availability"
-        - "Confirmation details provided clearly"
+  forbes_travel_guide_standards:
+    hotel_standards:
+      reservations:
+        - "Professional and knowledgeable phone manner"
+        - "Accurate information about rates and availability"
+        - "Confirmation details provided clearly"
 
-      arrival_experience:
-        - "Warm, sincere greeting within 30 seconds"
-        - "Efficient check-in process"
-        - "Clear explanation of amenities and services"
-        - "Personalized welcome for repeat guests"
+      arrival_experience:
+        - "Warm, sincere greeting within 30 seconds"
+        - "Efficient check-in process"
+        - "Clear explanation of amenities and services"
+        - "Personalized welcome for repeat guests"
 
-      guest_services:
-        - "Anticipatory service delivery"
-        - "Proactive problem-solving"
-        - "Consistent service across all touchpoints"
-        - "Attention to individual preferences"
+      guest_services:
+        - "Anticipatory service delivery"
+        - "Proactive problem-solving"
+        - "Consistent service across all touchpoints"
+        - "Attention to individual preferences"
 
-      digital_services:
-        - "User-friendly mobile applications"
-        - "Reliable Wi-Fi connectivity"
-        - "Digital check-in/out options"
-        - "Online concierge services"
+      digital_services:
+        - "User-friendly mobile applications"
+        - "Reliable Wi-Fi connectivity"
+        - "Digital check-in/out options"
+        - "Online concierge services"
 
-      guest_rooms:
-        - "Immaculate cleanliness standards"
-        - "Quality furnishings and amenities"
-        - "Proper lighting and climate control"
-        - "Attention to detail in setup"
+      guest_rooms:
+        - "Immaculate cleanliness standards"
+        - "Quality furnishings and amenities"
+        - "Proper lighting and climate control"
+        - "Attention to detail in setup"
 
-      public_areas:
-        - "Well-maintained facilities"
-        - "Appropriate ambiance and lighting"
-        - "Clean and organized appearance"
-        - "Comfortable seating arrangements"
+      public_areas:
+        - "Well-maintained facilities"
+        - "Appropriate ambiance and lighting"
+        - "Clean and organized appearance"
+        - "Comfortable seating arrangements"
 
-    restaurant_standards:
-      host_service:
-        - "Warm greeting within 30 seconds of arrival"
-        - "Professional seating coordination"
-        - "Knowledge of menu and specials"
+    restaurant_standards:
+      host_service:
+        - "Warm greeting within 30 seconds of arrival"
+        - "Professional seating coordination"
+        - "Knowledge of menu and specials"
 
-      food_quality:
-        - "Fresh, high-quality ingredients"
-        - "Consistent preparation and presentation"
-        - "Appropriate serving temperatures"
+      food_quality:
+        - "Fresh, high-quality ingredients"
+        - "Consistent preparation and presentation"
+        - "Appropriate serving temperatures"
 
-      service_delivery:
-        - "Attentive but unobtrusive service"
-        - "Knowledgeable staff recommendations"
-        - "Timely food and beverage service"
+      service_delivery:
+        - "Attentive but unobtrusive service"
+        - "Knowledgeable staff recommendations"
+        - "Timely food and beverage service"
 
-      facility_standards:
-        - "Clean, well-maintained dining areas"
-        - "Appropriate lighting and ambiance"
-        - "Comfortable seating arrangements"
-        - "Accessible facilities and services"
+      facility_standards:
+        - "Clean, well-maintained dining areas"
+        - "Appropriate lighting and ambiance"
+        - "Comfortable seating arrangements"
+        - "Accessible facilities and services"
 
-  employee_benefits_and_culture:
-    benefits:
-      - "Competitive hourly wages"
-      - "Flexible scheduling for students"
-      - "Professional development opportunities"
-      - "Hotel industry experience"
-      - "Networking with hospitality professionals"
-      - "Academic credit possibilities"
+  employee_benefits_and_culture:
+    benefits:
+      - "Competitive hourly wages"
+      - "Flexible scheduling for students"
+      - "Professional development opportunities"
+      - "Hotel industry experience"
+      - "Networking with hospitality professionals"
+      - "Academic credit possibilities"
 
-    training_components:
-      - "Hotel operations and systems"
-      - "Customer service excellence"
-      - "Professional communication"
-      - "Problem-solving skills"
-      - "Industry best practices"
-      - "Forbes Travel Guide standards"
+    training_components:
+      - "Hotel operations and systems"
+      - "Customer service excellence"
+      - "Professional communication"
+      - "Problem-solving skills"
+      - "Industry best practices"
+      - "Forbes Travel Guide standards"
 
-    career_development:
-      - "Mentorship opportunities"
-      - "Cross-training in different departments"
-      - "Leadership development programs"
-      - "Industry conference attendance"
-      - "Alumni network connections"
+    career_development:
+      - "Mentorship opportunities"
+      - "Cross-training in different departments"
+      - "Leadership development programs"
+      - "Industry conference attendance"
+      - "Alumni network connections"
 
-  emergency_procedures:
-    general_guidelines:
-      - "Guest safety is the top priority"
-      - "Follow established emergency protocols"
-      - "Communicate clearly with guests and staff"
-      - "Document all incidents properly"
+  emergency_procedures:
+    general_guidelines:
+      - "Guest safety is the top priority"
+      - "Follow established emergency protocols"
+      - "Communicate clearly with guests and staff"
+      - "Document all incidents properly"
 
-    fire_safety:
-      - "Know location of fire exits and equipment"
-      - "Follow evacuation procedures"
-      - "Assist guests with evacuation if needed"
+    fire_safety:
+      - "Know location of fire exits and equipment"
+      - "Follow evacuation procedures"
+      - "Assist guests with evacuation if needed"
 
-    medical_emergencies:
-      - "Call 911 immediately for serious injuries"
-      - "Notify management and security"
-      - "Provide first aid if trained"
-      - "Document incident thoroughly"
+    medical_emergencies:
+      - "Call 911 immediately for serious injuries"
+      - "Notify management and security"
+      - "Provide first aid if trained"
+      - "Document incident thoroughly"
 
-  quality_assurance:
-    guest_feedback:
-      - "Actively seek guest feedback"
-      - "Address concerns promptly"
-      - "Use feedback for continuous improvement"
-      - "Share positive feedback with team"
+  quality_assurance:
+    guest_feedback:
+      - "Actively seek guest feedback"
+      - "Address concerns promptly"
+      - "Use feedback for continuous improvement"
+      - "Share positive feedback with team"
 
-    performance_metrics:
-      - "Guest satisfaction scores"
-      - "Service delivery times"
-      - "Revenue per available room"
-      - "Repeat guest percentages"
+    performance_metrics:
+      - "Guest satisfaction scores"
+      - "Service delivery times"
+      - "Revenue per available room"
+      - "Repeat guest percentages"
 
-    continuous_improvement:
-      - "Regular training updates"
-      - "Process refinement based on feedback"
-      - "Technology system improvements"
-      - "Staff development programs"
+    continuous_improvement:
+      - "Regular training updates"
+      - "Process refinement based on feedback"
+      - "Technology system improvements"
+      - "Staff development programs"
 
-  technology_and_digital_services:
-    guest_facing_technology:
-      - "Mobile check-in and check-out"
-      - "Digital room keys"
-      - "In-room tablets or smart TVs"
-      - "High-speed Wi-Fi throughout property"
+  technology_and_digital_services:
+    guest_facing_technology:
+      - "Mobile check-in and check-out"
+      - "Digital room keys"
+      - "In-room tablets or smart TVs"
+      - "High-speed Wi-Fi throughout property"
 
-    operational_technology:
-      - "Property management systems"
-      - "Revenue management tools"
-      - "Housekeeping management systems"
-      - "Guest communication platforms"
+    operational_technology:
+      - "Property management systems"
+      - "Revenue management tools"
+      - "Housekeeping management systems"
+      - "Guest communication platforms"
 
-    security_systems:
-      - "PCI DSS compliant payment processing"
-      - "Secure guest data management"
-      - "Access control systems"
-      - "Surveillance and monitoring systems"
+    security_systems:
+      - "PCI DSS compliant payment processing"
+      - "Secure guest data management"
+      - "Access control systems"
+      - "Surveillance and monitoring systems"
 
-  training_assessments:
-    knowledge_areas:
-      - "Hotel mission, vision, and values"
-      - "Service standards and procedures"
-      - "System navigation and functionality"
-      - "Emergency procedures and protocols"
-      - "Forbes Travel Guide standards"
+  training_assessments:
+    knowledge_areas:
+      - "Hotel mission, vision, and values"
+      - "Service standards and procedures"
+      - "System navigation and functionality"
+      - "Emergency procedures and protocols"
+      - "Forbes Travel Guide standards"
 
-    evaluation_methods:
-      - "Written assessments"
-      - "Practical demonstrations"
-      - "Role-playing scenarios"
-      - "System proficiency tests"
-      - "Guest interaction evaluations"
+    evaluation_methods:
+      - "Written assessments"
+      - "Practical demonstrations"
+      - "Role-playing scenarios"
+      - "System proficiency tests"
+      - "Guest interaction evaluations"
 
-    ongoing_development:
-      - "Regular refresher training"
-      - "New procedure updates"
-      - "Advanced skill development"
-      - "Cross-departmental training opportunities"
+    ongoing_development:
+      - "Regular refresher training"
+      - "New procedure updates"
+      - "Advanced skill development"
+      - "Cross-departmental training opportunities"

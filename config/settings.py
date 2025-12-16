@@ -22,7 +22,7 @@ class AppConfig:
         self.VECTOR_STORE_DIR = self.DATA_DIR / "vectorstore"
 
         # Training documents path
-        self.TRAINING_DOCS_PATH = Path("/Users/wbo7/Library/CloudStorage/Box-Box/INFO 5940 - Fall 2025/Final Project/Front Desk Training Docs")
+        self.TRAINING_DOCS_PATH = self.BASE_DIR / "training_docs"
 
         # Create directories if they don't exist
         self.DATA_DIR.mkdir(exist_ok=True)

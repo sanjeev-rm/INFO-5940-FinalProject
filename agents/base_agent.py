@@ -34,22 +34,22 @@ class BaseAgent(ABC):
         model_configs = {
             "fast": {
                 "model": self.config.FAST_MODEL,
-                "max_tokens": 150,
+                "max_tokens": 1500,
                 "temperature": 0.7
             },
             "balanced": {
                 "model": self.config.BALANCED_MODEL,
-                "max_tokens": 300,
+                "max_tokens": 3000,
                 "temperature": 0.8
             },
             "smart": {
                 "model": self.config.SMART_MODEL,
-                "max_tokens": 500,
+                "max_tokens": 5000,
                 "temperature": 0.9
             },
             "default": {
                 "model": self.config.DEFAULT_MODEL,
-                "max_tokens": 300,
+                "max_tokens": 3000,
                 "temperature": 0.8
             }
         }
